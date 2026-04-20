@@ -11,11 +11,17 @@ let Building_use = document.getElementById("Building_use");
 let AverageFloorHeight = document.getElementById("AverageFloorHeight")
 let Number_of_basements = document.getElementById("Number_of_basements")
 let PrimaryFloorandWall = document.getElementById("PrimaryFloorandWall")
+let projectN = document.getElementById("Name1")
 
 
+let load_per_floor;
+let FloorWallFinish;
+let floorCost;
+let SillCost;
+let StairCost;
  
 
-let totalArea = AverageBuildupArea.value * FloorsAboveGround.value
+
 
 const floortype = {
     "ceramic" : 1000,
@@ -51,10 +57,7 @@ const building_use_load_per_floor = {
     "school": 15,
     "hospital": 20
 }
-let load_per_floor;
 
-    let FloorWallFinish;
-    let floorCost;
 function basecalculator() {
     switch (Building_use.value) {
         case "residential":
@@ -96,15 +99,7 @@ function basecalculator() {
             break;
     }
 
-    switch (PrimaryFloorandWall.value){
-        case "ceramic_marble":
-            let floorRate = floortype["ceramic"];
-            let sillsRate = sillstype["marble"];
-            let stairRate = stairstype["marble"];
-
-            floorCost = totalArea * floorRate
-            break
-    }
+   
 
 }
 
@@ -112,7 +107,7 @@ function basecalculator() {
 function CalculatePrice() {
   basecalculator()
        // formulas
-    
+    let totalArea = AverageBuildupArea.value * FloorsAboveGround.value
 let Total_Building_Load = AverageBuildupArea.value * FloorsAboveGround.value * load_per_floor
 let TotalLoad = AverageBuildupArea.value * bearingCapacityAmount.value
 let Foundation_area = Total_Building_Load / bearingCapacityAmount.value
@@ -120,9 +115,60 @@ let Volume = AverageBuildupArea.value * AverageFloorHeight.value * (Number(Floor
 let BaseCost = Volume * cost_per_squaremeter
 
 
-  
+let floorRate;
+let sillsRate;
+let stairRate;
 
-result.innerText = `Primary Floor and Wall ${floorCost} \n Foundation Area: ${Foundation_area} \n Volume: ${Volume} \n Total Land Load Capacity: ${TotalLoad} \n Total Building Load: ${Total_Building_Load} \n Average Buildup Area: ${AverageBuildupArea.value} \n cost per square meter: ${cost_per_squaremeter} \n Floors Above Ground: ${FloorsAboveGround.value} \n Number of Basements: ${Number_of_basements.value} \nBase Cost: ${(BaseCost)}`
+
+ switch (PrimaryFloorandWall.value){
+        case "ceramic_marble":
+             floorRate = floortype["ceramic"];
+             sillsRate = sillstype["marble"];
+             stairRate = stairstype["marble"];
+            break
+        case "ceramic_granite":
+             floorRate = floortype["ceramic"];
+             sillsRate = sillstype["granite"];
+             stairRate = stairstype["granite"];
+             break
+        case "ceramic_terazzo":
+              floorRate = floortype["ceramic"];
+             sillsRate = sillstype["terazzo"];
+             stairRate = stairstype["terazzo"];
+             break
+        case "porcelin_marble":
+             floorRate = floortype["porcelin"];
+             sillsRate = sillstype["marble"];
+             stairRate = stairstype["marble"];
+             break
+        case "porcelin_granite":
+             floorRate = floortype["porcelin"];
+             sillsRate = sillstype["granite"];
+             stairRate = stairstype["granite"];
+             break
+        case "porcelin_terazzo":
+             floorRate = floortype["porcelin"];
+             sillsRate = sillstype["terazzo"];
+             stairRate = stairstype["terazzo"];
+             break
+        case "marble":
+             floorRate = floortype["marble"];
+             sillsRate = sillstype["marble"];
+             stairRate = stairstype["marble"];
+             break
+        case "Granite":
+             floorRate = floortype["granite"];
+             sillsRate = sillstype["granite"];
+             stairRate = stairstype["granite"];
+             break
+
+}
+floorCost = totalArea * floorRate
+SillCost = totalArea * 0.1 * sillsRate
+StairCost = totalArea * 0.15 * stairRate
+  
+projectN.innerText = projectName.value
+result.innerText = `Primary Floor and Wall: ${floorCost + SillCost + StairCost} \n Foundation Area: ${Foundation_area} \n Volume: ${Volume} \n Total Land Load Capacity: ${TotalLoad} \n Total Building Load: ${Total_Building_Load} \n Average Buildup Area: ${AverageBuildupArea.value} \n cost per square meter: ${cost_per_squaremeter} \n Floors Above Ground: ${FloorsAboveGround.value} \n Number of Basements: ${Number_of_basements.value} \nBase Cost: ${(BaseCost)}`
 
 
 }
