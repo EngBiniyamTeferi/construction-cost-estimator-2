@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- link the styling css file -->
+    <link rel="stylesheet" href="cons_cost.css">
+
+    <!-- bootstrap setup -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Gravitas+One&display=swap"
+        rel="stylesheet">
+
+    <title>Cost Estimator</title>
+</head>
+
+<body>
+    <div id="bg">
+
+        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="">
+    </div>
+    <div class="container">
+        <form action="" id="EstimatorForm">
+            <h1>Construction Cost Estimator</h1>
+            <div>
+                <label for="project name">Project Name</label>
+                <input type="text" placeholder="project name" id="projectName" required>
+
+                <label for="City" id="city_label">City</label>
+                <select name="city options" id="city">
+                    <option value="0" selected disabled>choose your City</option>
+                </select>
+
+                <label for="Bearing Capacity Data">Do you have Bearing Capacity Data</label>
+                <select name="bearing capacity avail" id="bearingCapacityData">
+                    <option value="0" selected disabled>do you have bearing capacity data</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+                <div id="bearingCapacity">
+                    <label for="bearing capacity">Bearing Capacity (in KN/M <sup>2</sup>)</label>
+                    <input type="Number" placeholder="bearing capacity amount" id="bearingCapacityAmount">
+                </div>
+
+                <label for="location" id="location_in_city">location within(CITY)</label>
+                <select name="" id="locations">
+                    <option value="0" selected disabled>cities</option>
+                </select>
+
+                <label for="average builtup area">Average BuildUp Area per Floor ( in sq.m )</label>
+                <input type="number" placeholder="Average Buildup Area" id="AverageBuildupArea">
+
+                <label for="average floor height">Average Floor Height (in M)</label>
+                <input type="number" placeholder="Average Floor Height" id="AverageFloorHeight">
+
+                <label for="Building Use">Building Use</label>
+                <select name="" id="Building_use">
+                    <option value="" selected disabled>Building Use</option>
+                    <option value="residential">Residential</option>
+                    <option value="apartment">Apartment</option>
+                    <option value="office">Office</option>
+                    <option value="commercial">Commercial</option>
+                    <option value="mixed_use">Mixed Use</option>
+                    <option value="hotel">Hotel</option>
+                    <option value="industrial">Industrial</option>
+                    <option value="parking">Parking</option>
+                    <option value="storage">Storage</option>
+                    <option value="school">School</option>
+                    <option value="hospital">Hospital</option>
+                </select>
+
+                <label for="basements">Number of Basements</label>
+                <input type="number" placeholder="basements" id="Number_of_basements">
+
+                <label for="floors above">Number of Floors Above Ground Level</label>
+                <input type="number" placeholder="Floors above Ground" id="FloorsAboveGround">
+
+                <label for="primary floor and wall">Primary Floor & Wall Finish type</label>
+                <select name="" id="PrimaryFloorandWall">
+                    <option value="" selected disabled>Select Wall Finish type</option>
+                    <option value="ceramic_marble"><b>Ceramic</b> Floor / <b>Marble</b> sills & stairs</option>
+                    <option value="ceramic_granite">Ceramic Floor / Granite Sills & Stairs</option>
+                    <option value="ceramic_terazzo">Ceramic Floor / Terazzo Sills & Stairs</option>
+                    <option value="porcelin_marble">Porcelin Floor / Marble Sills & Stairs</option>
+                    <option value="porcelin_granite">Porcelin Floor / Granite Sills & Stairs</option>
+                    <option value="porcelin_marble">Porcelin Floor / Terazzo Sills & Stairs</option>
+                    <option value="marble">Floor, Sills & Stairs</option>
+                    <option value="Granite">Floor, Sills & Stairs</option>
+
+                </select>
+
+                <label for="roof_type">Roof Covering Type</label>
+                <select name="" id="">
+                    <option value="" selected disabled>Select Roof Covering Type</option>
+                    <option value="decra">Decra Roofing Tiles (or Similar)</option>
+                    <option value="CIS">Corrugated Iron Sheet (CIS)</option>
+                    <option value="EGA">EGA Profiled Sheet</option>
+                    <option value="EGA">Concrete Flat Roof (with Waterproofing)</option>
+                </select>
+
+                <label for="quality_carpentry">Quality of Carpentrty</label>
+                <select name="" id="">
+                    <option value="" selected disabled>Select Quality of Carpentry</option>
+                    <option value="0">None (no Builtin Cabinets / Cupboards)</option>
+                    <option value="low">Low (Basic Hardboard / Local Make)</option>
+                    <option value="medium">Medium (laminated MDF board)</option>
+                    <option value="high">High (high Quality UV Board (imported))</option>
+                </select>
+
+                <label for="window_door_frame">Window & External Door Frame</label>
+                <select name="" id="">
+                    <option value="" selected disabled>Select window and external Door Frame</option>
+                    <option value="aluminium">Aluminium Profiles</option>
+                    <option value="steel">Steel & LT2 Profiles</option>
+                    <option value="limit_Aluminum">Lmitation Aluminium</option>
+                </select>
+
+                <label for="paint_quality">Paint Quality / Brand Tier</label>
+                <select name="" id="">
+                    <option value="" selected disabled>Select Paint Quality</option>
+                    <option value="standard">Standard (Nifas Silk / equivalent )</option>
+                    <option value="medium">Medium ( Jotun / equivalent)</option>
+                    <option value="high">High (Silkcoat / equivalent)</option>
+                </select>
+
+                <label for="HVAC">HVAC System Scope</label>
+                <select name="" id="HVAC">
+                    <option value="" selected disabled>select the HVAC system</option>
+                    <option value="0">None</option>
+                    <option value="artificial_toilet">Artificial Toilet Ventilation only</option>
+                    <option value="artificial_kitchen">Artificial Kitchen Ventilation only</option>
+                    <option value="artificial_both">Artificial Kitchen & Toilet Ventilation only</option>
+                    <option value="artificial_both">Full HVAC heating (cooling) Ventilation</option>
+                </select>
+
+                <label for="quality_sanitary">Quality of Sanitary Fixtures</label>
+                <select name="" id="">
+                    <option value="" selected disabled>Select Quality of Sanitary</option>
+                    <option value="low">Low (Basic / Local)</option>
+                    <option value="medium">Medium (Standard Import)</option>
+                    <option value="high">High (Premium Import)</option>
+                    <option value="luxury">Luxury (European Standard / Designer)</option>
+                </select>
+
+                <label for="density_elec_fixtures">Quality of Density of Electrical Fixtures</label>
+                <select name="" id="">
+                    <option value="" selected disabled>Select Quality of Electrical Fixtures</option>
+                    <option value="low">Low (Basic Fixtures, Minimum Points)</option>
+                    <option value="medium">Medium (Standard Fixtures, Moderate Points)</option>
+                    <option value="high">High (Good Quality Fixtures, Ample Points)</option>
+                    <option value="luxury">luxury (Premium Fixtures,High Density, Smart Fixtures Possible)</option>
+                </select>
+
+                <label for="fire_protection">Fire Protection System</label>
+                <select name="" id="">
+                    <option value="" selected disabled>Select Fire Protection System</option>
+                    <option value="0">none</option>
+                    <option value="level_1">Portable Fire Extinguishers Only</option>
+                    <option value="level_2">Fire Hose Cabinets & Extinguishers</option>
+                    <option value="level_3">Fire Sprinkler System & Hose Extinguishers</option>
+                    <option value="level_4">Comprehensive (Sprinkler, Hose, Alarm etc)</option>
+                </select>
+
+                <label for="emergency_exit">External Emergency Exit Staircase</label>
+                <select name="" id="">
+                    <option value="" selected disabled>Select Emergency Exit</option>
+                    <option value="0">none ( no separate external emergency stair)</option>
+                    <option value="level_1">Helicas Steel (single)</option>
+                    <option value="level_1">Helicas Steel (double / multiple)</option>
+                    <option value="level_1">Straight / Dog-leg steel (single)</option>
+                    <option value="level_1">Straight / Dog-leg steel (double / multiple)</option>
+                    <option value="level_1">Concrete Staircase (external,single)</option>
+                    <option value="level_1">Concrete Staircase (external,double/multiple)</option>
+                </select>
+
+                <div class="btn">
+
+                    <button type="button" class="btn btn-success" onclick=CalculatePrice()>Calculate</button>
+                    <button type="button" class="btn btn-danger" id="resetForm">Reset Form</button>
+
+                </div>
+
+                <div class="result">
+                    <h6 class="text-danger">note that this price estimation doesn't contain the location
+                        value</h6>
+                    <h4 id="result">note</h4>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script src="projectCalculator.js"></script>
+    <script>
+        // lists of cities in Ethiopia
+        const cities = [
+
+            "Addis Ababa"
+            , "Sheger City"
+            , "Adama"
+            , "Hawassa"
+            , "Dire Dawa"
+            , "Harar"
+            , "Bahir Dar"
+            , "Desse"
+        ]
+
+        const city = document.getElementById("city");
+
+        const location_in_city = document.getElementById("location_in_city")
+
+        // select each city to process independently
+        cities.forEach(function (site) {
+            // for each city create an option (independent)
+            let option = document.createElement("option");
+            option.value = site;
+            option.innerText = site;
+
+            // append the options to the city
+            city.appendChild(option);
+
+        })
+
+        // locations inside each city
+        const AddisAbabaLocations = [
+            "Addis Ketema", "Akaky Kaliti", "Arada"
+            , "Bole", "Gullele", "Kirkos", "Kolfe Keraniyo",
+            "Lideta", "Nifas Silk", "Lafto", "Yeka",
+            "Lemi Kura"
+        ]
+        const ShegerCityLocations = [
+            "Burayu", "Eka Tafo", "Furi", "Gefersa Guji"
+            , "Gelan", "Gelan Guda", "Koye", "Kara Gida (Kura Jida)", "Mana Abichu"
+            , "Melka Nono", "Sebeta", "Sululta"
+        ]
+        const AdamaLocation = [
+            "Abageda", "Boku", "Dabe", "Bolle", "Lugo", "Dembella"
+        ]
+
+        const DireLocation = [
+            "Kezira", "Megala"
+        ]
+
+        const hararLocation = [
+            "Suqul",
+            "Hasen-Gey",
+            "Dire Teyara",
+            "Aboker Muti",
+            "Sigicha",
+            "Miyay",
+            "Erer Weldya",
+            "Erer Ulanula",
+            "Erer Hawaye",
+            "Erer Dodota",
+            "Aw Umer",
+            "Gelmashira",
+            "Aw Berkhedle",
+            "Sofi",
+            "Harewae",
+            "Qile",
+            "Burqa"
+        ]
+
+        const hawassaLocation = [
+            "Addis Ketema",
+            "Bahile Adarash",
+            "Hayek Dare",
+            "Hawela-Tula",
+            "Mehal Ketema",
+            "Menehariya",
+            "Misrak",
+            "Tabor"
+        ]
+
+        const BahirdarLocation = [
+            "Lake Tana",
+            "Blue Nile River",
+            "Blue Nile Falls"
+        ]
+
+        const DesseLocation = [
+            "Agew Awi Zone",
+            "East Gojjam Zone",
+            "North Gondar Zone",
+            "North Shewa Zone",
+            "North Wollo Zone",
+            "Oromia Zone",
+            "South Gondar Zone",
+            "South Wollo Zone",
+            "Wag Hemra Zone",
+            "West Gojjam Zone"
+
+        ]
+
+        let bg = document.getElementById("bg");
+
+
+        const locations = document.getElementById("locations")
+
+        // update the background and inner HTML when value changes
+        function cityLocationUpdate() {
+            if (city.value == "Addis Ababa") {
+                locations.innerHTML = "";
+                bg.innerHTML = ""
+                AddisAbabaLocations.forEach(function (location) {
+                    let option = document.createElement("option");
+                    option.value = location;
+                    option.innerText = location;
+                    locations.appendChild(option)
+                })
+
+                let img = document.createElement("img");
+                img.src = "https://images.unsplash.com/photo-1624314138470-5a2f24623f10?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+                bg.appendChild(img)
+            }
+            else if (city.value == "0") {
+                locations.innerHTML = ""
+                locations.value = ""
+                bg.innerHTML = ""
+                location_in_city.innerHTML = "location within(CITY)"
+
+
+                let img = document.createElement("img");
+                img.src = "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+                bg.appendChild(img)
+            }
+            else if (city.value == "Sheger City") {
+                locations.innerHTML = ""
+                bg.innerHTML = ""
+                ShegerCityLocations.forEach(function (location) {
+                    let option = document.createElement("option");
+                    option.value = location;
+                    option.innerText = location;
+                    locations.appendChild(option)
+                })
+                let img = document.createElement("img");
+                img.src = "https://i.pinimg.com/1200x/35/04/c2/3504c2d448a78e249d81a9a687f40d80.jpg"
+                bg.appendChild(img)
+
+            }
+            else if (city.value == "Adama") {
+                locations.innerHTML = ""
+                bg.innerHTML = ""
+                AdamaLocation.forEach(function (location) {
+                    let option = document.createElement("option");
+                    option.value = location;
+                    option.innerText = location;
+                    locations.appendChild(option)
+                })
+                let img = document.createElement("img");
+                img.src = "https://images.unsplash.com/photo-1624781789730-f752a7355510?q=80&w=1176&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                bg.appendChild(img)
+
+
+            }
+            else if (city.value == "Hawassa") {
+                locations.innerHTML = ""
+                bg.innerHTML = ""
+                hawassaLocation.forEach(function (location) {
+                    let option = document.createElement("option");
+                    option.value = location;
+                    option.innerText = location;
+                    locations.appendChild(option)
+                })
+                let img = document.createElement("img");
+                img.src = "  https://images.unsplash.com/photo-1752767420204-9a3e88eb58b2?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                bg.appendChild(img)
+
+
+            }
+            else if (city.value == "Bahir Dar") {
+                locations.innerHTML = ""
+                bg.innerHTML = ""
+                BahirdarLocation.forEach(function (location) {
+                    let option = document.createElement("option");
+                    option.value = location;
+                    option.innerText = location;
+                    locations.appendChild(option)
+                })
+                let img = document.createElement("img");
+                img.src = "https://images.unsplash.com/photo-1668939581252-470c103ac7da?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                bg.appendChild(img)
+
+
+            }
+            else if (city.value == "Harar") {
+                locations.innerHTML = ""
+                bg.innerHTML = ""
+                hararLocation.forEach(function (location) {
+                    let option = document.createElement("option");
+                    option.value = location;
+                    option.innerText = location;
+                    locations.appendChild(option)
+                })
+                let img = document.createElement("img");
+                img.src = "https://i.pinimg.com/1200x/29/6c/11/296c11e45718664ee98274afacbe9f96.jpg"
+                bg.appendChild(img)
+
+
+            }
+            else if (city.value == "Dire Dawa") {
+                locations.innerHTML = ""
+                bg.innerHTML = ""
+                DireLocation.forEach(function (location) {
+                    let option = document.createElement("option");
+                    option.value = location;
+                    option.innerText = location;
+                    locations.appendChild(option)
+                })
+                let img = document.createElement("img");
+                img.src = "https://i.pinimg.com/1200x/01/71/08/0171081f43c070fcdd428eecac6a9981.jpg"
+                bg.appendChild(img)
+
+
+            }
+            else if (city.value == "Desse") {
+                locations.innerHTML = ""
+                bg.innerHTML = ""
+                DesseLocation.forEach(function (location) {
+                    let option = document.createElement("option");
+                    option.value = location;
+                    option.innerText = location;
+                    locations.appendChild(option)
+                })
+                let img = document.createElement("img");
+                img.src = "https://images.unsplash.com/photo-1573403092240-26095e118918?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                bg.appendChild(img)
+            }
+
+        }
+
+        // calls out the cityLocationUpdate everytime city value changes
+        city.addEventListener("change", function () {
+            location_in_city.innerHTML = `location Within (${city.value})`
+            cityLocationUpdate()
+
+        })
+
+        let bearingCapacity = document.getElementById("bearingCapacity");
+
+        let bearingCapacityData = document.getElementById("bearingCapacityData");
+        // bearing capacity input value is disabled unless there is a bearing capacity
+        bearingCapacity.style.display = "none";
+
+        // turn on and off when bearing capacity data changes
+        bearingCapacityData.addEventListener("change", function () {
+            if (bearingCapacityData.value == "yes") {
+                bearingCapacity.style.display = "block";
+            } else {
+                bearingCapacity.style.display = "none";
+            }
+        })
+        let resetForm = document.getElementById("resetForm")
+
+
+        // reset the whole form
+        resetForm.addEventListener("click", function () {
+            city.value = "0"
+            bearingCapacityData.value = "0"
+            bearingCapacity.style.display = "none";
+            projectName.value = ""
+            bearingCapacityAmount.value = ""
+            locations.value = "0"
+            cityLocationUpdate()
+        })
+
+    </script>
+
+
+</body>
+
+</html>
