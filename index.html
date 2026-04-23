@@ -95,34 +95,42 @@
 
                 </select>
 
-                <label for="roof_type">Roof Covering Type</label>
-                <select name="" id="">
+                <label for="roof_type">Roof Type</label>
+                <select name="" id="roof_type">
+                    <option value="" selected disabled>Select Roof Type</option>
+                    <option value="Flat_roof">Flat Roof</option>
+                    <option value="Slight_slope">Slight Slope</option>
+                    <option value="Steep_roof">Steep Roof</option>
+
+                </select>
+                <label for="roof_covering_type">Roof Covering Type</label>
+                <select name="" id="roof_covering_type">
                     <option value="" selected disabled>Select Roof Covering Type</option>
                     <option value="decra">Decra Roofing Tiles (or Similar)</option>
                     <option value="CIS">Corrugated Iron Sheet (CIS)</option>
                     <option value="EGA">EGA Profiled Sheet</option>
-                    <option value="EGA">Concrete Flat Roof (with Waterproofing)</option>
+                    <option value="Concerete_flat">Concrete Flat Roof (with Waterproofing)</option>
                 </select>
 
-                <label for="quality_carpentry">Quality of Carpentrty</label>
-                <select name="" id="">
+                <label for="quality_carpentry">Quality of Carpentry</label>
+                <select name="" id="quality_carpentry">\
                     <option value="" selected disabled>Select Quality of Carpentry</option>
-                    <option value="0">None (no Builtin Cabinets / Cupboards)</option>
+                    <option value="none">None (no Builtin Cabinets / Cupboards)</option>
                     <option value="low">Low (Basic Hardboard / Local Make)</option>
                     <option value="medium">Medium (laminated MDF board)</option>
                     <option value="high">High (high Quality UV Board (imported))</option>
                 </select>
 
                 <label for="window_door_frame">Window & External Door Frame</label>
-                <select name="" id="">
+                <select name="" id="window_Door_frame">
                     <option value="" selected disabled>Select window and external Door Frame</option>
                     <option value="aluminium">Aluminium Profiles</option>
                     <option value="steel">Steel & LT2 Profiles</option>
-                    <option value="limit_Aluminum">Lmitation Aluminium</option>
+                    <option value="lmit_Aluminum">Lmitation Aluminium</option>
                 </select>
 
                 <label for="paint_quality">Paint Quality / Brand Tier</label>
-                <select name="" id="">
+                <select name="" id="paint_quality">
                     <option value="" selected disabled>Select Paint Quality</option>
                     <option value="standard">Standard (Nifas Silk / equivalent )</option>
                     <option value="medium">Medium ( Jotun / equivalent)</option>
@@ -136,7 +144,7 @@
                     <option value="artificial_toilet">Artificial Toilet Ventilation only</option>
                     <option value="artificial_kitchen">Artificial Kitchen Ventilation only</option>
                     <option value="artificial_both">Artificial Kitchen & Toilet Ventilation only</option>
-                    <option value="artificial_both">Full HVAC heating (cooling) Ventilation</option>
+                    <option value="full_hvac">Full HVAC heating (cooling) Ventilation</option>
                 </select>
 
                 <label for="quality_sanitary">Quality of Sanitary Fixtures</label>
