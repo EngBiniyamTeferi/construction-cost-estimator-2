@@ -18,6 +18,8 @@ let quality_carpentry = document.getElementById("quality_carpentry");
 let window_Door_frame = document.getElementById("window_Door_frame")
 let paint_quality = document.getElementById("paint_quality")
 let quality_sanitary = document.getElementById("quality_sanitary")
+let density_elec_fixtures = document.getElementById("density_elec_fixtures")
+let fire_protection = document.getElementById("fire_protection")
 
 
 let load_per_floor;
@@ -131,6 +133,23 @@ let sanitary_price_rate;
 let sanitary_factor;
 let sanitary_cost;
 
+let density_elec_fixtures_price_rate;
+let density_elec_fixtures_factor;
+let density_elec_fixtures_usage_factor;
+let density_elec_fixtures_cost;
+
+let fire_protection_price;
+let fire_protection_factor;
+let fire_protection_cost;
+
+let fire_protection_price_rate = {
+    "none":0,
+    "level_1": 80,
+    "level_2":200,
+    "level_3": 500,
+    "level_4":1000
+}
+
 // painting quality price/m squared and their brand
 let paint_quality_price = {
     "standard": 200,
@@ -153,6 +172,33 @@ let quality_of_sanitary_rate = {
     "medium": 2250,
     "high": 4000,
     "luxury": 7500
+}
+// price rate for electrical fixtures
+let density_elec_fixtures_rate = {
+    "low": 800,
+    "medium": 1400,
+    "high": 2500,
+    "luxury": 4500
+}
+// factors of electrical fixtures
+let density_elec_fixtures_factor_rate = {
+    "low": 0.8,
+    "medium": 1,
+    "high": 1.2,
+    "luxury": 1.5
+}
+const density_elec_fixtures_factor_building_use = {
+    "apartment": 1,
+    "residential": 0.9,
+    "office": 1.2,
+    "commercial": 1.3,
+    "hotel": 1.4,
+    "mixed_use": 1.2,
+    "industrial": 1.1,
+    "parking": 0.7,
+    "storage": 0.8,
+    "school": 1.2,
+    "hospital": 1.5
 }
 
 // sanitary factor by building_use
@@ -183,6 +229,20 @@ const paint_factor_by_building_use = {
     "school": 3.1,
     "hospital": 3.6
 }
+// fire protection factor by building_use
+const fire_protection_factor_by_building_use = {
+    "apartment": 1,
+    "residential": 0.7,
+    "office": 1.2,
+    "commercial": 1.3,
+    "hotel": 1.4,
+    "mixed_use": 1.3,
+    "industrial": 1.5,
+    "parking": 1.1,
+    "storage": 1.4,
+    "school": 1.2,
+    "hospital": 1.6
+}
 
 let totalArea;
 function basecalculator() {
@@ -206,62 +266,86 @@ function basecalculator() {
             load_per_floor = building_use_load_per_floor["residential"]
             paint_factor = paint_factor_by_building_use["residential"]
             sanitary_factor = sanitary_factor_by_building_use["residential"]
+            density_elec_fixtures_usage_factor = density_elec_fixtures_factor_building_use["residential"]
+            fire_protection_factor = fire_protection_factor_by_building_use["residential"]
             break;
         case "apartment":
             load_per_floor = building_use_load_per_floor["apartment"]
             paint_factor = paint_factor_by_building_use["apartment"]
             sanitary_factor = sanitary_factor_by_building_use["apartment"]
+            density_elec_fixtures_usage_factor = density_elec_fixtures_factor_building_use["apartment"]
+            fire_protection_factor = fire_protection_factor_by_building_use["apartment"]
             break;
         case "office":
             load_per_floor = building_use_load_per_floor["office"]
             paint_factor = paint_factor_by_building_use["office"]
             sanitary_factor = sanitary_factor_by_building_use["office"]
+            density_elec_fixtures_usage_factor = density_elec_fixtures_factor_building_use["office"]
+            fire_protection_factor = fire_protection_factor_by_building_use["office"]
             break;
         case "commercial":
             load_per_floor = building_use_load_per_floor["commercial"]
             paint_factor = paint_factor_by_building_use["commercial"]
             sanitary_factor = sanitary_factor_by_building_use["commercial"]
+            density_elec_fixtures_usage_factor = density_elec_fixtures_factor_building_use["commercial"]
+            fire_protection_factor = fire_protection_factor_by_building_use["commercial"]
             break;
         case "hotel":
             load_per_floor = building_use_load_per_floor["hotel"]
             paint_factor = paint_factor_by_building_use["hotel"]
             sanitary_factor = sanitary_factor_by_building_use["hotel"]
+            density_elec_fixtures_usage_factor = density_elec_fixtures_factor_building_use["hotel"]
+            fire_protection_factor = fire_protection_factor_by_building_use["hotel"]
             break;
         case "mixed_use":
             load_per_floor = building_use_load_per_floor["mixed_use"]
             paint_factor = paint_factor_by_building_use["mixed_use"]
             sanitary_factor = sanitary_factor_by_building_use["mixed_use"]
+            density_elec_fixtures_usage_factor = density_elec_fixtures_factor_building_use["mixed_use"]
+            fire_protection_factor = fire_protection_factor_by_building_use["mixed_use"]
             break;
         case "industrial":
             load_per_floor = building_use_load_per_floor["industrial"]
             paint_factor = paint_factor_by_building_use["industrial"]
             sanitary_factor = sanitary_factor_by_building_use["industrial"]
+            density_elec_fixtures_usage_factor = density_elec_fixtures_factor_building_use["industrial"]
+            fire_protection_factor = fire_protection_factor_by_building_use["industrial"]
             break;
         case "parking":
             load_per_floor = building_use_load_per_floor["parking"]
             paint_factor = paint_factor_by_building_use["parking"]
             sanitary_factor = sanitary_factor_by_building_use["parking"]
+            density_elec_fixtures_usage_factor = density_elec_fixtures_factor_building_use["parking"]
+            fire_protection_factor = fire_protection_factor_by_building_use["parking"]
             break;
         case "storage":
             load_per_floor = building_use_load_per_floor["storage"]
             paint_factor = paint_factor_by_building_use["storage"]
             sanitary_factor = sanitary_factor_by_building_use["storage"]
+            density_elec_fixtures_usage_factor = density_elec_fixtures_factor_building_use["storage"]
+            fire_protection_factor = fire_protection_factor_by_building_use["storage"]
             break;
         case "school":
             load_per_floor = building_use_load_per_floor["school"]
             paint_factor = paint_factor_by_building_use["school"]
             sanitary_factor = sanitary_factor_by_building_use["school"]
+            density_elec_fixtures_usage_factor = density_elec_fixtures_factor_building_use["school"]
+            fire_protection_factor = fire_protection_factor_by_building_use["school"]
             break;
         case "hospital":
             load_per_floor = building_use_load_per_floor["hospital"]
             paint_factor = paint_factor_by_building_use["hospital"]
             sanitary_factor = sanitary_factor_by_building_use["hospital"]
+            density_elec_fixtures_usage_factor = density_elec_fixtures_factor_building_use["hospital"]
+            fire_protection_factor = fire_protection_factor_by_building_use["hospital"]
             break;
 
         default:
             load_per_floor = ""
             paint_factor = ""
             sanitary_factor = ""
+            density_elec_fixtures_usage_factor = ""
+            fire_protection_factor = ""
             break;
     }
 
@@ -366,6 +450,47 @@ function basecalculator() {
         default:
             break;
     }
+    switch (density_elec_fixtures.value) {
+        case "low":
+            density_elec_fixtures_price_rate = density_elec_fixtures_rate["low"]
+            density_elec_fixtures_factor = density_elec_fixtures_factor_rate["low"]
+            break
+        case "medium":
+            density_elec_fixtures_price_rate = density_elec_fixtures_rate["medium"]
+            density_elec_fixtures_factor = density_elec_fixtures_factor_rate["medium"]
+            break
+        case "high":
+            density_elec_fixtures_price_rate = density_elec_fixtures_rate["high"]
+            density_elec_fixtures_factor = density_elec_fixtures_factor_rate["high"]
+            break
+        case "luxury":
+            density_elec_fixtures_price_rate = density_elec_fixtures_rate["luxury"]
+            density_elec_fixtures_factor = density_elec_fixtures_factor_rate["luxury"]
+            break
+
+        default:
+            break;
+    }
+    switch (fire_protection.value) {
+        case "none":
+            fire_protection_price = fire_protection_price_rate["none"]
+            break
+        case "level_1":
+            fire_protection_price = fire_protection_price_rate["level_1"]
+            break
+        case "level_2":
+            fire_protection_price = fire_protection_price_rate["level_2"]
+            break
+        case "level_3":
+            fire_protection_price = fire_protection_price_rate["level_3"]
+            break
+        case "level_4":
+            fire_protection_price = fire_protection_price_rate["level_4"]
+            break
+
+        default:
+            break;
+    }
 
 
 
@@ -452,8 +577,10 @@ function CalculatePrice() {
     carpentry_cost = totalArea * carpentry_price
     HVAC_Cost = totalArea * HVAC_Rate
     sanitary_cost = totalArea * sanitary_price_rate * sanitary_factor
+    density_elec_fixtures_cost = totalArea * density_elec_fixtures_price_rate * density_elec_fixtures_factor * density_elec_fixtures_usage_factor
+    fire_protection_cost = totalArea * fire_protection_price * fire_protection_factor
 
-    projectN.innerHTML = sanitary_cost
+    projectN.innerHTML = fire_protection_cost
     result.innerText = `Door Cost: ${door_cost} \n Window Cost: ${window_cost} \n Primary Floor and Wall: ${floorCost + SillCost + StairCost} \n Foundation Area: ${Foundation_area} \n Volume: ${Volume} \n Total Land Load Capacity: ${TotalLoad} \n Total Building Load: ${Total_Building_Load} \n Average Buildup Area: ${AverageBuildupArea.value} \n cost per square meter: ${cost_per_squaremeter} \n Floors Above Ground: ${FloorsAboveGround.value} \n Number of Basements: ${Number_of_basements.value} \nBase Cost: ${(BaseCost)}`
 
 
