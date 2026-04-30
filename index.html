@@ -45,7 +45,7 @@
                 </select>
                 <div id="bearingCapacity">
                     <label for="bearing capacity">Bearing Capacity (in KN/M <sup>2</sup>)</label>
-                    <input type="Number" placeholder="bearing capacity amount" id="bearingCapacityAmount">
+                    <input type="Number" placeholder="bearing capacity amount" id="bearingCapacityAmount" required>
                 </div>
 
                 <label for="location" id="location_in_city">location within(CITY)</label>
@@ -176,15 +176,15 @@
                 </select>
 
                 <label for="emergency_exit">External Emergency Exit Staircase</label>
-                <select name="" id="">
+                <select name="" id="emergency_exit">
                     <option value="" selected disabled>Select Emergency Exit</option>
-                    <option value="0">none ( no separate external emergency stair)</option>
+                    <option value="none">none ( no separate external emergency stair)</option>
                     <option value="level_1">Helicas Steel (single)</option>
-                    <option value="level_1">Helicas Steel (double / multiple)</option>
-                    <option value="level_1">Straight / Dog-leg steel (single)</option>
-                    <option value="level_1">Straight / Dog-leg steel (double / multiple)</option>
-                    <option value="level_1">Concrete Staircase (external,single)</option>
-                    <option value="level_1">Concrete Staircase (external,double/multiple)</option>
+                    <option value="level_2">Helicas Steel (double / multiple)</option>
+                    <option value="level_3">Straight / Dog-leg steel (single)</option>
+                    <option value="level_4">Straight / Dog-leg steel (double / multiple)</option>
+                    <option value="level_5">Concrete Staircase (external,single)</option>
+                    <option value="level_6">Concrete Staircase (external,double/multiple)</option>
                 </select>
 
                 <div class="btn">
@@ -206,10 +206,121 @@
                             <th>
                                 project name
                             </th>
+                            <th>
+                                City
+                            </th>
+                            <th>
+                                selected Location
+                            </th>
+                            <th>
+                                Capacity Data
+                            </th>
+                            <th>
+                                Average Buildup Area
+                            </th>
+                            <th>
+                                Average Floor Height
+                            </th>
+                            <th>
+                                Building Use
+                            </th>
+                            <th>
+                                Number of Basements
+                            </th>
+                            <th>
+                                Floorand Wall Finish
+                            </th>
+                            <th>
+                                Roof Type
+                            </th>
+                            <th>
+                                Roof Covering Type
+                            </th>
+                            <th>
+                                Quality of Carpentry
+                            </th>
+                            <th>
+                                Window and External Door Frame
+                            </th>
+                            <th>
+                                Paint Quality
+                            </th>
+                            <th>
+                                HVAC System
+                            </th>
+                            <th>
+                                Sanitary Fixtures
+                            </th>
+                            <th>
+                                Densiity of Electrical Fixtures
+                            </th>
+                            <th>
+                                Fire Protection System
+                            </th>
+                            <th>
+                                External Emergency Exit Staircase
+                            </th>
                         </thead>
                         <tbody>
                             <tr>
-                                <td id="Name1">
+                                <td id="selected_project_name">
+
+                                </td>
+                                <td id="selected_city">
+
+                                </td>
+                                <td id="selected_location">
+
+                                </td>
+                                <td id="selected_capacity_data">
+
+                                </td>
+                                <td id="selected_buildup_area">
+
+                                </td>
+                                <td id="selected_floor_height">
+
+                                </td>
+                                <td id="selected_building_use">
+
+                                </td>
+                                <td id="selected_basements">
+
+                                </td>
+                                <td id="selected_floors">
+
+                                </td>
+                                <td id="selected_floor_wall_finish">
+
+                                </td>
+                                <td id="selected_roof_type">
+
+                                </td>
+                                <td id="selected_roof_covering">
+
+                                </td>
+                                <td id="selected_carpentry">
+
+                                </td>
+                                <td id="selected_window_door_frame">
+
+                                </td>
+                                <td id="selected_paint_quality">
+
+                                </td>
+                                <td id="selected_HVAC">
+
+                                </td>
+                                <td id="selected_sanitary_fixture">
+
+                                </td>
+                                <td id="selected_electrical_fixture">
+
+                                </td>
+                                <td id="selected_fire_protection">
+
+                                </td>
+                                <td id="selected_emergency_exit">
 
                                 </td>
                             </tr>
@@ -220,6 +331,7 @@
         </form>
     </div>
     <script src="projectCalculator.js"></script>
+    <script src="namestable.js"></script>
     <script>
         // lists of cities in Ethiopia
         const cities = [

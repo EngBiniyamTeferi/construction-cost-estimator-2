@@ -20,6 +20,8 @@ let paint_quality = document.getElementById("paint_quality")
 let quality_sanitary = document.getElementById("quality_sanitary")
 let density_elec_fixtures = document.getElementById("density_elec_fixtures")
 let fire_protection = document.getElementById("fire_protection")
+let emergency_exit = document.getElementById("emergency_exit")
+
 
 
 let load_per_floor;
@@ -142,12 +144,26 @@ let fire_protection_price;
 let fire_protection_factor;
 let fire_protection_cost;
 
+
+let emergency_exit_price;
+let emergency_exit_height_factor;
+let emergency_exit_cost;
+
 let fire_protection_price_rate = {
     "none":0,
     "level_1": 80,
     "level_2":200,
     "level_3": 500,
     "level_4":1000
+}
+let emergency_exit_price_rate = {
+    "none":0,
+    "level_1": 225000,
+    "level_2":500000,
+    "level_3": 375000,
+    "level_4":750000,
+    "level_5":600000,
+    "level_6":1150000
 }
 
 // painting quality price/m squared and their brand
@@ -491,15 +507,52 @@ function basecalculator() {
         default:
             break;
     }
+    switch (emergency_exit.value) {
+        case "none":
+            emergency_exit_price = emergency_exit_price_rate["none"]
+            break
+        case "level_1":
+            emergency_exit_price = emergency_exit_price_rate["level_1"]
+            break
+        case "level_2":
+            emergency_exit_price = emergency_exit_price_rate["level_2"]
+            break
+        case "level_3":
+            emergency_exit_price = emergency_exit_price_rate["level_3"]
+            break
+        case "level_4":
+            emergency_exit_price = emergency_exit_price_rate["level_4"]
+            break
+        case "level_5":
+            emergency_exit_price = emergency_exit_price_rate["level_5"]
+            break
+        case "level_6":
+            emergency_exit_price = emergency_exit_price_rate["level_6"]
+            break
 
-
+        default:
+            break;
+    }
 
 }
 
 
 function CalculatePrice() {
     basecalculator()
+    tables()
 
+    if(FloorsAboveGround.value <= 5){
+        emergency_exit_height_factor = 1
+    }
+    else if (FloorsAboveGround.value <= 10) {
+        emergency_exit_height_factor =1.2
+    }
+    else if (FloorsAboveGround.value <= 20) {
+        emergency_exit_height_factor =1.4
+    }
+    else {
+        emergency_exit_height_factor = 1.6
+    }
 
     if (FloorsAboveGround.value <= 0 || FloorsAboveGround.value == "") {
         totalArea = AverageBuildupArea.value
@@ -579,8 +632,9 @@ function CalculatePrice() {
     sanitary_cost = totalArea * sanitary_price_rate * sanitary_factor
     density_elec_fixtures_cost = totalArea * density_elec_fixtures_price_rate * density_elec_fixtures_factor * density_elec_fixtures_usage_factor
     fire_protection_cost = totalArea * fire_protection_price * fire_protection_factor
+    emergency_exit_cost = emergency_exit_height_factor * emergency_exit_price
 
-    projectN.innerHTML = fire_protection_cost
+    projectN.innerHTML = emergency_exit_cost
     result.innerText = `Door Cost: ${door_cost} \n Window Cost: ${window_cost} \n Primary Floor and Wall: ${floorCost + SillCost + StairCost} \n Foundation Area: ${Foundation_area} \n Volume: ${Volume} \n Total Land Load Capacity: ${TotalLoad} \n Total Building Load: ${Total_Building_Load} \n Average Buildup Area: ${AverageBuildupArea.value} \n cost per square meter: ${cost_per_squaremeter} \n Floors Above Ground: ${FloorsAboveGround.value} \n Number of Basements: ${Number_of_basements.value} \nBase Cost: ${(BaseCost)}`
 
 

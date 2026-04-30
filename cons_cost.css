@@ -137,3 +137,11 @@ body {
 .notice h6 {
     font-size: 1.2rem;
 }
+
+table {
+    width: fit-content;
+}
+table, table thead, table tbody, table th, table tr, table td {
+    border: 3px solid black;
+}
+
