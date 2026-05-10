@@ -536,7 +536,14 @@ function basecalculator() {
 
 }
 
-
+let totalCost;
+let window_cost;
+    let door_cost;
+    let BaseCost;
+        let Total_Building_Load
+    let TotalLoad
+    let Foundation_area
+    let Volume
 function CalculatePrice() {
     basecalculator()
     tables()
@@ -562,20 +569,19 @@ function CalculatePrice() {
 
     // formulas
 
-    let Total_Building_Load = AverageBuildupArea.value * FloorsAboveGround.value * load_per_floor
-    let TotalLoad = AverageBuildupArea.value * bearingCapacityAmount.value
-    let Foundation_area = Total_Building_Load / bearingCapacityAmount.value
-    let Volume = AverageBuildupArea.value * AverageFloorHeight.value * (Number(FloorsAboveGround.value) + (Number_of_basements.value * 1.3))
-    let BaseCost = Volume * cost_per_squaremeter
+     Total_Building_Load = AverageBuildupArea.value * FloorsAboveGround.value * load_per_floor
+     TotalLoad = AverageBuildupArea.value * bearingCapacityAmount.value
+     Foundation_area = Total_Building_Load / bearingCapacityAmount.value
+     Volume = AverageBuildupArea.value * AverageFloorHeight.value * (Number(FloorsAboveGround.value) + (Number_of_basements.value * 1.3))
+
 
 
 
     window_area = totalArea * 0.25
     doors = totalArea / 100
     door_area = doors * 2
-    let window_cost = window_area * window_frame_rate
-    let door_cost = door_area * door_frame_rate
-    let window_and_door_cost = window_cost + door_cost
+    
+
 
     switch (PrimaryFloorandWall.value) {
         case "ceramic_marble":
@@ -620,7 +626,9 @@ function CalculatePrice() {
             break
 
     }
-
+     BaseCost = Volume * cost_per_squaremeter
+    window_cost = window_area * window_frame_rate
+    door_cost= door_area * door_frame_rate
     paint_cost = totalArea * paint_factor * paint_quality_rate
     floorCost = totalArea * floorRate
     SillCost = totalArea * 0.1 * sillsRate
@@ -634,9 +642,7 @@ function CalculatePrice() {
     fire_protection_cost = totalArea * fire_protection_price * fire_protection_factor
     emergency_exit_cost = emergency_exit_height_factor * emergency_exit_price
 
-    projectN.innerHTML = emergency_exit_cost
-    result.innerText = `Door Cost: ${door_cost} \n Window Cost: ${window_cost} \n Primary Floor and Wall: ${floorCost + SillCost + StairCost} \n Foundation Area: ${Foundation_area} \n Volume: ${Volume} \n Total Land Load Capacity: ${TotalLoad} \n Total Building Load: ${Total_Building_Load} \n Average Buildup Area: ${AverageBuildupArea.value} \n cost per square meter: ${cost_per_squaremeter} \n Floors Above Ground: ${FloorsAboveGround.value} \n Number of Basements: ${Number_of_basements.value} \nBase Cost: ${(BaseCost)}`
-
-
+    totalCost = paint_cost + floorCost + SillCost + StairCost + roof_cost + carpentry_cost + HVAC_Cost + sanitary_cost
+    + density_elec_fixtures_cost + fire_protection_cost + emergency_exit_cost + BaseCost + window_cost + door_cost
 
 }

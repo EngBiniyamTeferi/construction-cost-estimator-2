@@ -4,13 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- link the styling css file -->
+
     <link rel="stylesheet" href="cons_cost.css">
 
-    <!-- bootstrap setup -->
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- google fonts -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Gravitas+One&display=swap"
@@ -26,8 +27,17 @@
             alt="">
     </div>
     <div class="container">
+        <div id="topRow">
+
+            <h1 id="header">Construction Cost Estimator</h1>
+                  <button id="downloadBtn" class="btn btn-success"><span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+                <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/>
+                <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"/>
+                </svg></span>
+                Download Excel
+                </button>
+        </div>
         <form action="" id="EstimatorForm">
-            <h1>Construction Cost Estimator</h1>
             <div>
                 <label for="project name">Project Name</label>
                 <input type="text" placeholder="project name" id="projectName" required>
@@ -197,131 +207,155 @@
                 <div class="result">
                     <div class="notice bg-dark p-2">
                         <h6 class="text-danger">note that this price estimation doesn't contain the location
+                        </h6>
                     </div>
-                    value</h6>
-                    <h4 id="result">note</h4>
 
-                    <table>
+                        
+            
+                    <table class="bg-dark p-2">
                         <thead>
-                            <th>
-                                project name
-                            </th>
-                            <th>
-                                City
-                            </th>
-                            <th>
-                                selected Location
-                            </th>
-                            <th>
-                                Capacity Data
-                            </th>
-                            <th>
-                                Average Buildup Area
-                            </th>
-                            <th>
-                                Average Floor Height
-                            </th>
-                            <th>
-                                Building Use
-                            </th>
-                            <th>
-                                Number of Basements
-                            </th>
-                            <th>
-                                Floorand Wall Finish
-                            </th>
-                            <th>
-                                Roof Type
-                            </th>
-                            <th>
-                                Roof Covering Type
-                            </th>
-                            <th>
-                                Quality of Carpentry
-                            </th>
-                            <th>
-                                Window and External Door Frame
-                            </th>
-                            <th>
-                                Paint Quality
-                            </th>
-                            <th>
-                                HVAC System
-                            </th>
-                            <th>
-                                Sanitary Fixtures
-                            </th>
-                            <th>
-                                Densiity of Electrical Fixtures
-                            </th>
-                            <th>
-                                Fire Protection System
-                            </th>
-                            <th>
-                                External Emergency Exit Staircase
-                            </th>
+                           
                         </thead>
                         <tbody>
+                    
                             <tr>
+                                <td>Project Name</td>
                                 <td id="selected_project_name">
-
                                 </td>
-                                <td id="selected_city">
-
+                            </tr>
+                            <tr>
+                            <td>
+                                City
+                            </td>                            <td id="selected_city">
                                 </td>
-                                <td id="selected_location">
-
+                            </tr>
+                            <tr>
+                                     <td>
+                                selected Location
+                                     </td>                              <td id="selected_location">
+            
                                 </td>
-                                <td id="selected_capacity_data">
-
+                            </tr>
+                            <tr>
+                                <td>
+                                Capacity Data
+                                </td>                                <td id="selected_capacity_data">
+            
                                 </td>
+                            </tr>
+                            <tr>
+                                  <td>
+                                Average Buildup Area
+                                  </td>
                                 <td id="selected_buildup_area">
-
+            
                                 </td>
-                                <td id="selected_floor_height">
-
+                            </tr>
+                            <tr>
+                                <td>
+                                Average Floor Height
+                                </td>                    <td id="selected_floor_height">
+            
                                 </td>
-                                <td id="selected_building_use">
-
+                            </tr>
+                            <tr>
+                                <td>
+                                Building Use
+                                </td>              <td id="selected_building_use">
+            
                                 </td>
-                                <td id="selected_basements">
-
+                            </tr>
+                            <tr>
+                                 <td>
+                                Number of Basements
+                                 </td>           <td id="selected_basements">
+            
                                 </td>
-                                <td id="selected_floors">
-
+                            </tr>
+                            <tr>
+                                <td>
+                                Floors
+                                </td>                          <td id="selected_floors">
+            
                                 </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                Floorand Wall Finish
+                                </td>   
                                 <td id="selected_floor_wall_finish">
-
+            
                                 </td>
-                                <td id="selected_roof_type">
-
+                            </tr>
+                            <tr>
+                                 <td>
+                                Roof Type
+                                 </td>                                <td id="selected_roof_type">
+            
                                 </td>
-                                <td id="selected_roof_covering">
-
+                            </tr>
+                            <tr>
+                                <td>
+                                Roof Covering Type
+                                </td>                  <td id="selected_roof_covering">
+            
                                 </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                Quality of Carpentry
+                                </td>          
                                 <td id="selected_carpentry">
-
+            
                                 </td>
-                                <td id="selected_window_door_frame">
-
+                            </tr>
+                            <tr>
+            <td>
+                                Window and External Door Frame
+            </td>     <td id="selected_window_door_frame">
+            
                                 </td>
-                                <td id="selected_paint_quality">
-
+                            </tr>
+                            <tr>
+                                <td>
+                                Paint Quality
+                                </td><td id="selected_paint_quality">
+            
                                 </td>
-                                <td id="selected_HVAC">
-
+                            </tr>
+                            <tr>
+                                <td>
+                                HVAC System
+                                </td> <td id="selected_HVAC">
+            
                                 </td>
-                                <td id="selected_sanitary_fixture">
-
+                            </tr>
+                            <tr>
+                                <td>
+                                Sanitary Fixtures
+                                </td><td id="selected_sanitary_fixture">
+            
                                 </td>
-                                <td id="selected_electrical_fixture">
-
+                            </tr>
+                            <tr>
+                                <td>
+                                Densiity of Electrical Fixtures
+                                </td> <td id="selected_electrical_fixture">
+            
                                 </td>
-                                <td id="selected_fire_protection">
-
+                            </tr>
+                            <tr>
+                                <td>
+                                Fire Protection System
+                                </td><td id="selected_fire_protection">
+            
                                 </td>
-                                <td id="selected_emergency_exit">
-
+                            </tr>
+                            <tr>
+                                <td>
+                                External Emergency Exit Staircase
+                                </td><td id="selected_emergency_exit">
+            
                                 </td>
                             </tr>
                         </tbody>
@@ -329,9 +363,11 @@
                 </div>
             </div>
         </form>
+ 
     </div>
     <script src="projectCalculator.js"></script>
     <script src="namestable.js"></script>
+    <script src="exportXLSX.js"></script>
     <script>
         // lists of cities in Ethiopia
         const cities = [
@@ -606,7 +642,6 @@
         })
 
     </script>
-
 
 </body>
 
